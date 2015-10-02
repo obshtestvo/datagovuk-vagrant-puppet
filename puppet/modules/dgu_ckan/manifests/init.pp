@@ -584,7 +584,7 @@ class dgu_ckan {
   # I can replicate this on the command-line when logged in as vagrant and using sudo,
   # but it works if you do 'sudo su' or 'sudo su co' and then do 'sudo npm install'.
   exec { 'npm_deps_dgu':
-    command   => 'sudo npm install',
+    command   => 'sudo npm install --no-bin-links',
     cwd       => '/src/ckanext-dgu',
     user      => 'co',
     require   => [
@@ -605,7 +605,7 @@ class dgu_ckan {
     path      => "/usr/bin:/bin:/usr/sbin",
   }
   exec { 'npm_deps_shared':
-    command   => 'sudo npm install',
+    command   => 'sudo npm install --no-bin-links',
     cwd       => '/src/shared_dguk_assets',
     user      => 'co',
     require   => Package['grunt-cli'],
